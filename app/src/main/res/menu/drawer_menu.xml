@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/milk_add"
+        android:title="Milk"
+        android:icon="@drawable/milk_bottle"/>
+    <item
+        android:id="@+id/expense"
+        android:title="Expense"
+        android:icon="@drawable/expense"/>
+    <item
+        android:id="@+id/cow_fertility"
+        android:title="Cow Fertility"
+        android:icon="@drawable/cow"/>
+    <item
+        android:id="@+id/milk_add"
+        android:title="Calf Details"
+        android:icon="@drawable/calf"/>
+    <item
+        android:id="@+id/milk_add"
+        android:title="Other Notes"
+        android:icon="@drawable/other"/>
+</menu>
