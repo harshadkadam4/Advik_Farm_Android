@@ -13,11 +13,11 @@
         android:title="Cow Fertility"
         android:icon="@drawable/cow"/>
     <item
-        android:id="@+id/milk_add"
+        android:id="@+id/calf_details"
         android:title="Calf Details"
         android:icon="@drawable/calf"/>
     <item
-        android:id="@+id/milk_add"
+        android:id="@+id/other"
         android:title="Other Notes"
         android:icon="@drawable/other"/>
 </menu>

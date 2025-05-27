@@ -7,10 +7,10 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   >
+    >
 
     <RelativeLayout
-        android:id="@+id/main"
+        android:id="@+id/mainRelLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
@@ -27,6 +27,10 @@
             android:layout_marginEnd="341dp"
             android:src="@drawable/more" />
 
+        <RelativeLayout
+            android:id="@+id/subRelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
