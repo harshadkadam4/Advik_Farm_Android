@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         mainRelLayout = findViewById(R.id.mainRelLayout);
 
         MilkAddFragment milkAddFragment = new MilkAddFragment();
+        ExpenseFragment expenseFragment = new ExpenseFragment();
 
         more.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +52,15 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.subRelLayout, milkAddFragment)
+                            .commit();
+                    drawer_layout.closeDrawers();
+                    return true;
+                }
+                else if(id == R.id.expense)
+                {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.subRelLayout, expenseFragment)
                             .commit();
                     drawer_layout.closeDrawers();
                     return true;

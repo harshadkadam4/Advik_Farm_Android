@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Advik_Farm_2</string>
+
+    <string-array name="list_options">
+        <item>Medicine</item>
+        <item>Goli</item>
+        <item>Doctor</item>
+    </string-array>
 </resources>
