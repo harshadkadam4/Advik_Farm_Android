@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         android:fontFamily="@font/poppins_regular"
-        android:text="Expense Details"
+        android:text="Cow Fertility"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,6 +23,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <!-- Amount Input -->
     <TextView
         android:id="@+id/date"
         android:layout_width="0dp"
@@ -43,43 +45,23 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/typeInputLayout"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Expense Type"
-        app:layout_constraintTop_toBottomOf="@id/date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <AutoCompleteTextView
-            android:id="@+id/select_expense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none"
-            android:text="Select" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Amount Input -->
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/amountInputLayout"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="Cow Tag/ Name"
         android:layout_marginTop="20dp"
-        android:hint="Amount"
-        app:layout_constraintTop_toBottomOf="@id/typeInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/date">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/amount"
+            android:id="@+id/cow_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
             android:fontFamily="@font/poppins_regular"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Description -->
@@ -89,7 +71,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="Add Description"
+        android:hint="Add Description / Semen Details"
         app:layout_constraintTop_toBottomOf="@id/amountInputLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -112,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:backgroundTint="#810000"
-        android:text="Add Expense"
+        android:text="Add"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:cornerRadius="16dp"

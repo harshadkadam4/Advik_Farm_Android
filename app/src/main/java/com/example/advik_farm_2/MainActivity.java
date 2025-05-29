@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         MilkAddFragment milkAddFragment = new MilkAddFragment();
         ExpenseFragment expenseFragment = new ExpenseFragment();
+        FertilityFragment fertilityFragment = new FertilityFragment();
 
         more.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +66,15 @@ public class MainActivity extends AppCompatActivity {
                     drawer_layout.closeDrawers();
                     return true;
                 }
-
+                else if(id == R.id.cow_fertility)
+                {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.subRelLayout, fertilityFragment)
+                            .commit();
+                    drawer_layout.closeDrawers();
+                    return true;
+                }
                 return false;
             }
         });

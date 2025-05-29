@@ -5,13 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.button.MaterialButton;
@@ -19,41 +15,27 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 
-public class ExpenseFragment extends Fragment {
+public class FertilityFragment extends Fragment {
 
     private TextView date;
-    private TextInputEditText amount,description;
+    private TextInputEditText cow_name,description;
     private MaterialButton add;
-    private AutoCompleteTextView select_expense;
 
-    private MilkAddDB expenseDB;
+    private MilkAddDB cowFertilityDB;
 
-    String exp_type="";
-
-    public ExpenseFragment(){
+    public FertilityFragment(){
         // Required empty public constructor
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        //to keep the list full visible while switching between fragments
-        String[] list_options = getResources().getStringArray(R.array.list_options);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.dropdown_list, list_options);
-        select_expense.setAdapter(arrayAdapter);
-    }
-
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceSate)
     {
-        View view = inflater.inflate(R.layout.expense,container,false);
+        View view = inflater.inflate(R.layout.fertility,container,false);
 
         date = view.findViewById(R.id.date);
-        amount = view.findViewById(R.id.amount);
+        cow_name = view.findViewById(R.id.cow_name);
         description = view.findViewById(R.id.description);
         add = view.findViewById(R.id.add);
-        select_expense = view.findViewById(R.id.select_expense);
 
         date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,31 +59,25 @@ public class ExpenseFragment extends Fragment {
             }
         });
 
-        select_expense.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                exp_type = parent.getItemAtPosition(position).toString();
-            }
-        });
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String selected_date = date.getText().toString();
                 String added_desc = description.getText().toString();
-                String entered_amount_str = amount.getText().toString();
+                String entered_cow_name = cow_name.getText().toString();
 
                 if(added_desc.length() == 0)
                 {
                     added_desc="NA";
                 }
 
-                if(validateDate(selected_date) && validateExpType(exp_type) && validateAmount(entered_amount_str) )
+                if(validateDate(selected_date) && validateCowName(entered_cow_name))
                 {
-                    int entered_amount = Integer.parseInt(entered_amount_str);
-                    expenseDB = new MilkAddDB(getContext());
-                    expenseDB.addExpense(selected_date, exp_type, entered_amount, added_desc);
-                    Toast.makeText(getContext(), "Expense Added", Toast.LENGTH_SHORT).show();
+                    cowFertilityDB = new MilkAddDB(getContext());
+                    cowFertilityDB.addCowFertility(selected_date, entered_cow_name, added_desc);
+                    Toast.makeText(getContext(), "Cow Added", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -122,28 +98,18 @@ public class ExpenseFragment extends Fragment {
     }
 
 
-    public boolean validateAmount(String entered_amount_str)
+    public boolean validateCowName(String entered_cow_name)
     {
-        if(entered_amount_str.length() == 0){
-            amount.setError("Enter Amount");
+        if(entered_cow_name.length() == 0){
+            cow_name.setError("Enter Cow Name");
             return false;
         }
         else {
-            amount.setError(null);
+            cow_name.setError(null);
             return true;
         }
     }
 
-    public boolean validateExpType(String exp_type)
-    {
-        if(exp_type.length() == 0){
-            select_expense.setError("Select Expense Type");
-            return false;
-        }
-        else {
-            select_expense.setError(null);
-            return true;
-        }
-    }
+
 
 }

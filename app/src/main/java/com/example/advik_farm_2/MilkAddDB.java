@@ -10,29 +10,37 @@ import androidx.annotation.Nullable;
 
 import java.text.DecimalFormat;
 
+// All DB Methods added here, to resolve issue of no such table
+
 public class MilkAddDB extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "advikFarmDB";
     private static final int DB_VERSION = 1;
 
+    SQLiteDatabase db = this.getWritableDatabase();
+
     public MilkAddDB(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
     String query = "CREATE TABLE milk_add (date TEXT PRIMARY KEY, morning_lit REAL, night_lit REAL);";
     db.execSQL(query);
+
+    String query1 = "CREATE TABLE expense (exp_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, exp_type TEXT, amount INTEGER, descr TEXT);";
+    db.execSQL(query1);
+
+    String query2 = "CREATE TABLE cow_fertility (date TEXT, cow_name TEXT, descr TEXT);";
+    db.execSQL(query2);
+
     }
 
     public void addMilk(String date, float liters, String rg_choice)
     {
-        SQLiteDatabase db=null;
-
         try
         {
-            db = this.getWritableDatabase();
-
             // Check if the record already exists
             String query = "SELECT COUNT(*) FROM milk_add WHERE date = ?";
             SQLiteStatement statement = db.compileStatement(query);
@@ -79,9 +87,35 @@ public class MilkAddDB extends SQLiteOpenHelper {
         }
     }
 
+    public void addExpense(String date, String exp_type, int amount, String description) {
+
+        ContentValues values = new ContentValues();
+
+        values.put("date", date);
+        values.put("exp_type", exp_type);
+        values.put("amount", amount);
+        values.put("descr", description);
+
+        db.insert("expense",null,values);
+        db.close();
+    }
+
+    public void addCowFertility(String date, String cow_name, String description) {
+        ContentValues values = new ContentValues();
+
+        values.put("date", date);
+        values.put("cow_name", cow_name);
+        values.put("descr", description);
+
+        db.insert("cow_fertility",null,values);
+        db.close();
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS milk_add");
+        db.execSQL("DROP TABLE IF EXISTS expense");
+        db.execSQL("DROP TABLE IF EXISTS cow_fertility");
         onCreate(db);
     }
 }
