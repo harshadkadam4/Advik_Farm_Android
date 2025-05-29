@@ -15,22 +15,22 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 
-public class FertilityFragment extends Fragment {
+public class CalfFragment extends Fragment {
 
     private TextView date;
     private TextInputEditText cow_name,description;
     private MaterialButton add;
 
-    private AllDB cowFertilityDB;
+    private AllDB calfDB;
 
-    public FertilityFragment(){
+    public CalfFragment(){
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceSate)
     {
-        View view = inflater.inflate(R.layout.fertility,container,false);
+        View view = inflater.inflate(R.layout.calf_details,container,false);
 
         date = view.findViewById(R.id.date);
         cow_name = view.findViewById(R.id.cow_name);
@@ -75,8 +75,8 @@ public class FertilityFragment extends Fragment {
 
                 if(validateDate(selected_date) && validateCowName(entered_cow_name))
                 {
-                    cowFertilityDB = new AllDB(getContext());
-                    cowFertilityDB.addCowFertility(selected_date, entered_cow_name, added_desc);
+                    calfDB = new AllDB(getContext());
+                    calfDB.addCalfDetails(selected_date, entered_cow_name, added_desc);
                     Toast.makeText(getContext(), "Cow Added", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -109,7 +109,5 @@ public class FertilityFragment extends Fragment {
             return true;
         }
     }
-
-
 
 }

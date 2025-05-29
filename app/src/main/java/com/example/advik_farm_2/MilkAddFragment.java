@@ -7,16 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.navigation.NavigationView;
 
 import java.util.Calendar;
 
@@ -27,7 +24,7 @@ public class MilkAddFragment extends Fragment {
     MaterialButton add;
     RadioGroup rg;
     String rg_choice = "morning";
-    private MilkAddDB milkAddDB;
+    private AllDB allDB;
 
     public MilkAddFragment() {
     }
@@ -85,8 +82,8 @@ public class MilkAddFragment extends Fragment {
                 {
                     float milk_liter  = Float.parseFloat(literText);
 
-                    milkAddDB = new MilkAddDB(getContext());
-                    milkAddDB.addMilk(selected_date,milk_liter,rg_choice);
+                    allDB = new AllDB(getContext());
+                    allDB.addMilk(selected_date,milk_liter,rg_choice);
                     Toast.makeText(getContext(), "Added", Toast.LENGTH_SHORT).show();
                 }
             }

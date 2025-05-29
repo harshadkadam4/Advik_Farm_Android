@@ -26,7 +26,7 @@ public class ExpenseFragment extends Fragment {
     private MaterialButton add;
     private AutoCompleteTextView select_expense;
 
-    private MilkAddDB expenseDB;
+    private AllDB expenseDB;
 
     String exp_type="";
 
@@ -99,7 +99,7 @@ public class ExpenseFragment extends Fragment {
                 if(validateDate(selected_date) && validateExpType(exp_type) && validateAmount(entered_amount_str) )
                 {
                     int entered_amount = Integer.parseInt(entered_amount_str);
-                    expenseDB = new MilkAddDB(getContext());
+                    expenseDB = new AllDB(getContext());
                     expenseDB.addExpense(selected_date, exp_type, entered_amount, added_desc);
                     Toast.makeText(getContext(), "Expense Added", Toast.LENGTH_SHORT).show();
                 }

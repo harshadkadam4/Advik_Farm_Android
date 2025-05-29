@@ -12,14 +12,14 @@ import java.text.DecimalFormat;
 
 // All DB Methods added here, to resolve issue of no such table
 
-public class MilkAddDB extends SQLiteOpenHelper {
+public class AllDB extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "advikFarmDB";
     private static final int DB_VERSION = 1;
 
     SQLiteDatabase db = this.getWritableDatabase();
 
-    public MilkAddDB(@Nullable Context context) {
+    public AllDB(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -34,6 +34,9 @@ public class MilkAddDB extends SQLiteOpenHelper {
 
     String query2 = "CREATE TABLE cow_fertility (date TEXT, cow_name TEXT, descr TEXT);";
     db.execSQL(query2);
+
+    String query3 = "CREATE TABLE calf_details (birth_date TEXT, cow_name TEXT, descr TEXT);";
+    db.execSQL(query3);
 
     }
 
@@ -111,11 +114,24 @@ public class MilkAddDB extends SQLiteOpenHelper {
         db.close();
     }
 
+
+    public void addCalfDetails(String birth_date, String cow_name, String description) {
+        ContentValues values = new ContentValues();
+
+        values.put("birth_date", birth_date);
+        values.put("cow_name", cow_name);
+        values.put("descr", description);
+
+        db.insert("calf_details",null,values);
+        db.close();
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS milk_add");
         db.execSQL("DROP TABLE IF EXISTS expense");
         db.execSQL("DROP TABLE IF EXISTS cow_fertility");
+        db.execSQL("DROP TABLE IF EXISTS calf_details");
         onCreate(db);
     }
 }
